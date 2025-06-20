@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Receitas Deliciosas</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background-color: #fff9f2;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: #ff6b6b;
+            color: white;
+            text-align: center;
+            padding: 1.5rem 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .hero h2 {
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            position: relative;
+        }
+        
+        .recipes {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .recipe-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .recipe-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .recipe-img {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .recipe-content {
+            padding: 1.5rem;
+        }
+        
+        .recipe-content h3 {
+            margin-bottom: 0.5rem;
+            color: #ff6b6b;
+        }
+        
+        .recipe-content p {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: #ff6b6b;
+            color: white;
+            padding: 0.6rem 1.3rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.3s ease;
+        }
+        
+        .btn:hover {
+            background: #ff5252;
+        }
+        
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 1.5rem 0;
+            margin-top: 2rem;
+        }
+        
+        /* Estilos para o modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .recipes {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Receitas Deliciosas</h1>
+        <p>Encontre as melhores receitas para o seu dia a dia</p>
+    </header>
+    
+    <div class="hero">
+        <h2>Cozinhe com sabor</h2>
+    </div>
+    
+    <div class="container">
+        <div class="recipes">
+            <div class="recipe-card">
+                <div class="recipe-img" style="background-image: url('https://img.nsctotal.com.br/wp-content/uploads/2023/11/saladadecouvensc.jpeg');"></div>
+                <div class="recipe-content">
+                    <h3>Salada</h3>
+                    <p>Uma salada fresca e nutritiva com ingredientes da estação.</p>
+                    <button class="btn" onclick="showRecipe('salada')">Ver Receita</button>
+                </div>
+            </div>
+            
+            <div class="recipe-card">
+                <div class="recipe-img" style="background-image: url('https://images.unsplash.com/photo-1482049016688-2d3e1b311543?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80');"></div>
+                <div class="recipe-content">
+                    <h3>Panquecas de Banana</h3>
+                    <p>Panquecas saudáveis para um café da manhã perfeito.</p>
+                    <button class="btn" onclick="showRecipe('panquecas')">Ver Receita</button>
+                </div>
+            </div>
+            
+            <div class="recipe-card">
+                <div class="recipe-img" style="background-image: url('https://img.cybercook.com.br/receitas/985/macarrao-ao-pesto-2.jpeg');"></div>
+                <div class="recipe-content">
+                    <h3>Macarrão</h3>
+                    <p>Um clássico com um toque especial de manjericão fresco.</p>
+                    <button class="btn" onclick="showRecipe('macarrao')">Ver Receita</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal para mostrar as receitas -->
+    <div id="recipeModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <div id="modalRecipeContent"></div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>&copy; 2025 Receitas Deliciosas. Todos os direitos reservados.</p>
+    </footer>
+    
+    <script>
+        function showRecipe(recipe) {
+            const modal = document.getElementById('recipeModal');
+            const content = document.getElementById('modalRecipeContent');
+            let recipeContent = '';
+            
+            switch(recipe) {
+                case 'salada':
+                    recipeContent = `
+                        <h2>Salada</h2>
+                        <h3>Ingredientes:</h3>
+                        <ul>
+                            <li>2 xícaras de folhas verdes</li>
+                            <li>1 tomate picado</li>
+                            <li>1 pepino em cubos</li>
+                            <li>1 cenoura ralada</li>
+                            <li>1/2 xícara de grão-de-bico cozido</li>
+                            <li>Azeite e limão a gosto</li>
+                        </ul>
+                        <h3>Modo de preparo:</h3>
+                        <p>Misture todos os ingredientes em uma tigela e tempere com azeite e limão. Sirva fresco.</p>
+                    `;
+                    break;
+                case 'panquecas':
+                    recipeContent = `
+                        <h2>Panquecas com banana</h2>
+                        <h3>Ingredientes:</h3>
+                        <ul>
+                            <li>1 banana madura</li>
+                            <li>1 ovo</li>
+                            <li>2 colheres de farinha de aveia</li>
+                            <li>1 pitada de canela</li>
+                        </ul>
+                        <h3>Modo de preparo:</h3>
+                        <p>Amasse a banana, misture com os outros ingredientes e frite em frigideira antiaderente em fogo médio até dourar dos dois lados.</p>
+                    `;
+                    break;
+                case 'macarrao':
+                    recipeContent = `
+                        <h2>Macarrão</h2>
+                        <h3>Ingredientes:</h3>
+                        <ul>
+                            <li>200g de macarrão</li>
+                            <li>1 xícara de manjericão fresco</li>
+                            <li>2 dentes de alho</li>
+                            <li>3 colheres de sopa de pinoli</li>
+                            <li>1/2 xícara de queijo parmesão ralado</li>
+                            <li>Azeite de oliva</li>
+                        </ul>
+                        <h3>Modo de preparo:</h3>
+                        <p>Bata no liquidificador o manjericão, alho, pinoli e queijo, acrescentando azeite até formar um creme. Misture com o macarrão cozido al dente.</p>
+                    `;
+                    break;
+                default:
+                    recipeContent = "<p>Receita não encontrada.</p>";
+            }
+            
+            content.innerHTML = recipeContent;
+            modal.style.display = 'flex';
+        }
+        
+        function closeModal() {
+            document.getElementById('recipeModal').style.display = 'none';
+        }
+        
+        // Fechar o modal ao clicar fora dele
+        window.onclick = function(event) {
+            const modal = document.getElementById('recipeModal');
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
